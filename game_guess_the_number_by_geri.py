@@ -75,7 +75,7 @@ game_canvas.pack(fill="both", expand=True)
 game_canvas.create_image(0, 0, image=bg_image, anchor="nw")
 
 # Create the heading for the game
-game_canvas.create_text(300, 30, text="GUESS THE NUMBER FROM 1 TO 100 ", font=("Times New Roman", 15), fill="black")
+game_canvas.create_text(300, 30, text="GUESS THE NUMBER FROM 1 TO 100 ", font=("Times New Roman", 16), fill="black")
 
 # Define variables:
 entered_value = tk.IntVar()
