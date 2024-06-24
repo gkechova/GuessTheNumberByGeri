@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import *
 import random
-from threading import *
+
 
 # define global variables:
 number_to_guess = int()
@@ -29,18 +29,23 @@ def get_player_entry_value():
         game_canvas.itemconfig(response_to_player, text="You entered invalid value. \nTry again...")
 
     else:
-        result = result_from_guess(player_guess_number=player_input_to_integer)
+        if 0 < player_input_to_integer < 101:
+            result = result_from_guess(player_guess_number=player_input_to_integer)
 
-        if result == "GUESSED":
-            game_canvas.itemconfig(response_to_player, text=str("You entered " + player_input.get() + ".\n YOU WIN!!!"))
+            if result == "GUESSED":
+                game_canvas.itemconfig(response_to_player,
+                                       text=str("You entered " + player_input.get() + ".\n YOU WIN!!!"))
 
-            # Player guessed the number, clear the entry and disable input
-            player_input.delete(0, END)
-            player_input.config(state=DISABLED)
-            player_submit_button.config(state=DISABLED)
+                # Player guessed the number, clear the entry and disable input
+                player_input.delete(0, END)
+                player_input.config(state=DISABLED)
+                player_submit_button.config(state=DISABLED)
 
+            else:
+                game_canvas.itemconfig(response_to_player,
+                                       text=str("You entered " + player_input.get() + ". \n" + result))
         else:
-            game_canvas.itemconfig(response_to_player, text=str("You entered " + player_input.get() + ". \n" + result))
+            game_canvas.itemconfig(response_to_player, text="You entered invalid value. \nTry again...")
 
     # clear user input for the next try
     player_input.delete(0, END)
